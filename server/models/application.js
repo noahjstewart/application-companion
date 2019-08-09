@@ -39,7 +39,9 @@ const ApplicationSchema = new Schema({
     type: Boolean,
     default: false
   },
-  user: { type: Schema.Types.ObjectId, ref: 'User' }
+  _user_id: {
+    type: Number
+  }
 }, { 
   timestamps: {
     createdAt: 'created_at',

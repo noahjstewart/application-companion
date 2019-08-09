@@ -22,4 +22,9 @@ router.post('/', (req, res) => {
   })
 });
 
+// DELETE /api/applications/:id
+router.delete('/:id', (req, res) => {
+  
+});
+
 module.exports = router;
