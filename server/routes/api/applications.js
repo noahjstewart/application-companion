@@ -31,4 +31,27 @@ router.delete('/:id', (req, res) => {
   });
 });
 
+// PUT /api/applications/:id
+router.put('/:id', (req, res) => {
+  Application.findByIdAndUpdate(req.params.id,
+    req.body,
+    { new: true },
+    (err, application) => {
+    if (err) res.send(err);
+    console.log(`Editing application (new): ${application}`);
+    res.status(200).json(application);
+  });
+});
+
+// GET /api/applications/:id
+router.get('/:id', (req, res) => {
+  Application.findById(req.params.id, (err, application) => {
+    if (err) res.send(err);
+    console.log(`Sending application: ${application}`);
+    res.status(200).json(application);
+  });
+});
+
+
+
 module.exports = router;
