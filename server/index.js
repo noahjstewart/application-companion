@@ -9,7 +9,7 @@ const app = express();
 // connect to db
 mongoose.connect('mongodb://localhost:27017/applicationtracker', { useNewUrlParser: true })
   .catch(e => console.log());
-
+mongoose.set('useFindAndModify', false);
 var db = mongoose.connection;
 db.on("connected", function() {
   console.log("\nConnected to the db\n");
@@ -26,7 +26,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use((req, res, next) => {
-  console.log(`\nHandling ${req.method} ${req.url} -- params: ${util.inspect(req.body, false, null)}\n`);
+  console.log(`\nHandling ${req.method} ${req.url}`);
+  console.log(`body: ${util.inspect(req.body, false, null)}\n`);
   next();
 });
 
