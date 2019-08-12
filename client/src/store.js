@@ -24,8 +24,8 @@ export default new Vuex.Store({
   },
   actions: {
 
-    loadApplications() {
-      // use axios
+    loadApplications({ commit }) {
+      
     }
     
   }

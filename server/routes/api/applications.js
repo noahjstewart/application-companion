@@ -5,10 +5,10 @@ const Application = require('../../models/application');
 
 // GET /api/applications
 router.get('/', (req, res) => {
-  Application.find({}).sort({created_at: 'desc'}).exec((err, applications) => {
+  Application.find({}).sort({company: 'asc'}).exec((err, applications) => {
     if (err) res.status(404).json();
     console.log("Sending applications")
-    res.send(applications);
+    res.json(applications);
   });
 });
 
