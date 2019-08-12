@@ -1,20 +1,36 @@
 <template>
   <div class="home">
-    <div v-for="app in applications" :key="app._id">
-      {{ app._id }}: {{ app.company }} {{ app.position }}
-    </div>
+    <data-table
+      :cols="tableHeaders"
+      :rows="applications"
+    />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
+import DataTable from '@/components/DataTable.vue';
 import { mapState } from 'vuex';
 
 export default {
 
+ components: {
+   'data-table': DataTable
+ }, 
+
   data() {
     return {
+      tableHeaders: [
+        'Company',
+        'Position',
+        'Listing URL',
+        'Applied At',
+        'Notes',
+        'Response?',
+        'Interview?',
+        'Offer?',
+        'Accepted?'
+      ]
     }
   },
 

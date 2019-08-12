@@ -51,12 +51,33 @@ export default {
 
 
 <style>
+/* color palettes: 
+current = https://colorhunt.co/palette/117601
+
+https://colorhunt.co/palette/10792
+https://colorhunt.co/palette/118962
+https://colorhunt.co/palette/150168 
+https://colorhunt.co/palette/1649 (grayscale)
+*/
+
+body {
+  height: 100%;
+  width: 100%;
+  background-color: #232931;
+  font-family: 'Lato', sans-serif;
+}
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   padding: 4vh 10vw;
+  color: #eeeeee;
 }
 
 .error-message {
-  background-color: red;
+  margin: 0 auto;
+  background-color: #ff6768;
+  text-align: center;
+  padding: 10px 30px;
+  border-radius: 4px;
+  width: 50%;
 }
 </style>
