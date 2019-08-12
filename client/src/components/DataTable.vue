@@ -7,8 +7,8 @@
       <tr v-for="(row, index) in rows" :key="index">
         <td>{{ row.company }}</td>
         <td>{{ row.position }}</td>
-        <td>{{ row.listing_url }}</td>
-        <td>{{ row.applied_at }}</td>
+        <td><a v-if="row.listing_url" :href="row.listing_url" target="_blank">Listing</a></td>
+        <td>{{ row.applied_at | formatDate }}</td>
         <td>{{ row.notes }}</td>
         <td>{{ row.response }}</td>
         <td>{{ row.interview }}</td>
@@ -42,8 +42,7 @@ export default {
 </script>
 
 <style scoped>
-table, th, td {
-  border: 1px solid #232931;
+table {
   border-collapse: collapse;
   text-align: left;
 }
@@ -54,11 +53,30 @@ table {
   box-shadow: 0px 10px 18px -7px black;
 }
 
+th, td {
+  padding: 2px 4px;
+}
+
 th {
-  color: #232931
+  color: #232931;
+  border-bottom: 1px solid #232931;
 }
 
 td {
   color: #393e46;
+  border-bottom: 1px solid #c9d6df;
 }
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: #393e46;
+}
+
+a:hover {
+  color: #00adb5;
+}
+
 </style>
