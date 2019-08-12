@@ -22,11 +22,11 @@ router.post('/', (req, res) => {
   })
 });
 
-// DELETE /api/applications/:id
-router.delete('/:id', (req, res) => {
-  Application.findByIdAndRemove(req.params.id, (err, application) => {
-    if (err) res.send(err);
-    console.log(`Removing application: ${application}`);
+// GET /api/applications/:id
+router.get('/:id', (req, res) => {
+  Application.findById(req.params.id, (err, application) => {
+    if (err) res.status(404).json(err);
+    console.log(`Sending application: ${application}`);
     res.status(200).json(application);
   });
 });
@@ -37,21 +37,20 @@ router.put('/:id', (req, res) => {
     req.body,
     { new: true },
     (err, application) => {
-    if (err) res.send(err);
+      if (err) res.json(err);
     console.log(`Editing application (new): ${application}`);
     res.status(200).json(application);
   });
 });
 
-// GET /api/applications/:id
-router.get('/:id', (req, res) => {
-  Application.findById(req.params.id, (err, application) => {
-    if (err) res.send(err);
-    console.log(`Sending application: ${application}`);
+// DELETE /api/applications/:id
+router.delete('/:id', (req, res) => {
+  Application.findByIdAndRemove(req.params.id, (err, application) => {
+    if (err) res.json(err);
+    console.log(`Removing application: ${application}`);
     res.status(200).json(application);
   });
 });
-
 
 
 module.exports = router;
