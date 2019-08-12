@@ -8,11 +8,17 @@ const app = express();
 
 // connect to db
 mongoose.connect('mongodb://localhost:27017/applicationtracker', { useNewUrlParser: true })
-  .catch(e => console.log(e));
+  .catch(e => console.log());
+
 var db = mongoose.connection;
-db.on("error", console.error.bind(console, "\nFailed to connect to the db\n"));
-db.once("open", function (callback) {
+db.on("connected", function() {
   console.log("\nConnected to the db\n");
+});
+db.on("error", function() {
+  console.log("Failed to connect to the db");
+});
+db.on("disconnected", function() {
+  console.log("Disconnected from the db");
 });
 
 // MIDDLEWARE
@@ -20,8 +26,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use((req, res, next) => {
-  let reqUrl = req.protocol + '://' + req.get('Host') + req.url;
-  console.log(`\nHandling ${req.method} ${reqUrl} -- params: ${util.inspect(req.body, false, null)}\n`);
+  console.log(`\nHandling ${req.method} ${req.url} -- params: ${util.inspect(req.body, false, null)}\n`);
   next();
 });
 
@@ -31,6 +36,7 @@ const apiRoutes = require('./routes/api/routes');
 app.use('/api', apiRoutes);
 
 
+// run the server
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
