@@ -26,9 +26,9 @@ app.use((req, res, next) => {
 });
 
 // ROUTES
-const applications = require('./routes/api/applications');
+const apiRoutes = require('./routes/api/routes');
 
-app.use('/api/applications', applications);
+app.use('/api', apiRoutes);
 
 
 const port = process.env.PORT || 5000;
