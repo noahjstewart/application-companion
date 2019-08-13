@@ -1,15 +1,21 @@
 <template>
   <div id="app">
+    <top-nav />
     <div v-if="error" class="error-message">{{ error }}</div>
     <router-view />
   </div>
 </template>
 
 <script>
+import TopNav from '@/components/navigation/TopNav.vue';
 import { mapMutations } from 'vuex';
 import axios from 'axios';
 
 export default {
+
+  components: {
+    'top-nav': TopNav
+  },
 
   data() {
     return {

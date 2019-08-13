@@ -2,11 +2,12 @@
   <div class="home">
     <div class="home-header">
       <h1>Application Companion</h1>
-      <custom-button
-        msg="Add Application"
-        @btnClicked="addApplication">
-        <span slot="icon">+</span>
-      </custom-button>
+      <router-link :to="{ name: 'create-application' }">
+        <custom-button
+          msg="Add Application">
+          <span slot="icon"><i class="fa fa-plus" aria-hidden="true"></i></span>
+        </custom-button>
+      </router-link>
     </div>
     <data-table
       :rows="applicationRows"
@@ -41,10 +42,14 @@ export default {
     
   },
 
+  created() {
+    this.setApplicationRows();
+  },
+
   methods: {
 
-    addApplication() {
-      alert('add app');
+    setApplicationRows() {
+      this.applicationRows = JSON.parse(JSON.stringify(this.applications));
     }
     
   },
@@ -52,7 +57,7 @@ export default {
   watch: {
     
     applications() {
-      this.applicationRows = JSON.parse(JSON.stringify(this.applications));
+      this.setApplicationRows();
     }
 
   }
