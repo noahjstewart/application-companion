@@ -1,32 +1,34 @@
 <template>
-  <div class="data-table">
-    <table v-if="rows.length">
-      <tr>
-        <th v-for="(col, index) in cols" :key="index"
-         :class="{ 'checkbox-col': [5,6,7,8].includes(index) }">{{ col }}</th>
-      </tr>
-      <tr v-for="(row, index) in rows" :key="index" @click="viewApplication(row._id)">
-        <td>{{ row.company }}</td>
-        <td>{{ row.position }}</td>
-        <td><span v-if="row.listing_url" @click="visitListing(row.listing_url, $event)" class="listing-url">Listing</span></td>
-        <td>{{ row.applied_at | formatDate }}</td>
-        <td>{{ row.notes }}</td>
-        <td :class="{ 'checkbox-col': true, 'checked': row.response, 'unchecked': !row.response }">
-          <input type="checkbox" v-model="row.response" @click="updateRow(row._id, $event)" />
-        </td>
-        <td :class="{ 'checkbox-col': true, 'checked': row.interview, 'unchecked': !row.interview }">
-          <input type="checkbox" v-model="row.interview" @click="updateRow(row._id, $event)" />
-        </td>
-        <td :class="{ 'checkbox-col': true, 'checked': row.offer, 'unchecked': !row.offer }">
-          <input type="checkbox" v-model="row.offer" @click="updateRow(row._id, $event)" />
-        </td>
-        <td :class="{ 'checkbox-col': true, 'checked': row.accepted, 'unchecked': !row.accepted }">
-          <input type="checkbox" v-model="row.accepted" @click="updateRow(row._id, $event)" />
-        </td>
-      </tr>
-    </table>
+  <div>
+    <div class="data-table" v-if="rows.length">
+      <table v-if="rows.length">
+        <tr>
+          <th v-for="(col, index) in cols" :key="index"
+          :class="{ 'checkbox-col': [5,6,7,8].includes(index) }">{{ col }}</th>
+        </tr>
+        <tr v-for="(row, index) in rows" :key="index" @click="viewApplication(row._id)">
+          <td>{{ row.company }}</td>
+          <td>{{ row.position }}</td>
+          <td><span v-if="row.listing_url" @click="visitListing(row.listing_url, $event)" class="listing-url">Listing</span></td>
+          <td>{{ row.applied_at | formatDate }}</td>
+          <td>{{ row.notes }}</td>
+          <td :class="{ 'checkbox-col': true, 'checked': row.response, 'unchecked': !row.response }">
+            <input type="checkbox" v-model="row.response" @click="updateRow(row._id, $event)" />
+          </td>
+          <td :class="{ 'checkbox-col': true, 'checked': row.interview, 'unchecked': !row.interview }">
+            <input type="checkbox" v-model="row.interview" @click="updateRow(row._id, $event)" />
+          </td>
+          <td :class="{ 'checkbox-col': true, 'checked': row.offer, 'unchecked': !row.offer }">
+            <input type="checkbox" v-model="row.offer" @click="updateRow(row._id, $event)" />
+          </td>
+          <td :class="{ 'checkbox-col': true, 'checked': row.accepted, 'unchecked': !row.accepted }">
+            <input type="checkbox" v-model="row.accepted" @click="updateRow(row._id, $event)" />
+          </td>
+        </tr>
+      </table>
+    </div>
     <div v-else class="error-message">
-      No applications to show
+      No data to display
     </div>
   </div>
 </template>

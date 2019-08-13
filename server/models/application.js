@@ -4,11 +4,13 @@ const Schema = mongoose.Schema;
 const ApplicationSchema = new Schema({
   company: {
     type: String,
-    default: ""
+    default: "",
+    required: [true, 'Company name is required']
   },
   position: {
     type: String,
-    default: ""
+    default: "",
+    required: [true, 'Position title is required']
   },
   listing_url: {
     type: String,

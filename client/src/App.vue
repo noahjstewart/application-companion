@@ -36,7 +36,7 @@ export default {
 
     loadApplications() {
       this.loading = true;
-      axios.get('http://localhost:5000/api/applications')
+      this.$http.get('http://localhost:5000/api/applications')
       .then(res => {
         this.setApplications({
           applications: res.data

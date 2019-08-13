@@ -14,7 +14,7 @@ export default new Vuex.Store({
     },
 
     addApplication(state, payload) {
-      state.applications.push(payload.applications);
+      state.applications.unshift(payload.application);
     },
 
     editApplication(state, payload) {
