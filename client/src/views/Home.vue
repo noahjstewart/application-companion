@@ -5,7 +5,6 @@
       <button class="btn-add-application">Add Application</button>
     </div>
     <data-table
-      :cols="tableHeaders"
       :rows="applicationRows"
     />
   </div>
@@ -24,17 +23,6 @@ export default {
 
   data() {
     return {
-      tableHeaders: [
-        'Company',
-        'Position',
-        'Listing URL',
-        'Applied',
-        'Notes',
-        'Response?',
-        'Interview?',
-        'Offer?',
-        'Accepted?'
-      ],
       applicationRows: []
     }
   },
@@ -47,8 +35,12 @@ export default {
     
   },
 
-  mounted() {
-    this.applicationRows = JSON.parse(JSON.stringify(this.applications));
+  watch: {
+    
+    applications() {
+      this.applicationRows = JSON.parse(JSON.stringify(this.applications));
+    }
+
   }
   
 }

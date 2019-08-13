@@ -2,7 +2,8 @@
   <div class="data-table">
     <table v-if="rows.length">
       <tr>
-        <th v-for="(col, index) in cols" :key="index">{{ col }}</th>
+        <th v-for="(col, index) in cols" :key="index"
+         :class="{ 'checkbox-col': [5,6,7,8].includes(index) }">{{ col }}</th>
       </tr>
       <tr v-for="(row, index) in rows" :key="index" @click="viewApplication(row._id)">
         <td>{{ row.company }}</td>
@@ -10,10 +11,10 @@
         <td><span v-if="row.listing_url" @click="visitListing(row.listing_url, $event)" class="listing-url">Listing</span></td>
         <td>{{ row.applied_at | formatDate }}</td>
         <td>{{ row.notes }}</td>
-        <td>{{ row.response }}</td>
-        <td>{{ row.interview }}</td>
-        <td>{{ row.offer }}</td>
-        <td>{{ row.accepted }}</td>
+        <td class="checkbox-col"><input type="checkbox" v-model="row.response" @click="updateRow(row._id, $event)" /></td>
+        <td class="checkbox-col"><input type="checkbox" v-model="row.interview" @click="updateRow(row._id, $event)" /></td>
+        <td class="checkbox-col"><input type="checkbox" v-model="row.offer" @click="updateRow(row._id, $event)" /></td>
+        <td class="checkbox-col"><input type="checkbox" v-model="row.accepted" @click="updateRow(row._id, $event)" /></td>
       </tr>
     </table>
     <div v-else class="error-message">
@@ -26,15 +27,27 @@
 export default {
 
   props: {
-    cols: {
-      type: Array,
-      required: true,
-      default: []
-    },
     rows: {
       type: Array,
-      required: true,
+      required: false,
       default: []
+    }
+  },
+
+  data() {
+    return {
+      saving: false,
+      cols: [
+        'Company',
+        'Position',
+        'Listing URL',
+        'Applied',
+        'Notes',
+        'Response?',
+        'Interview?',
+        'Offer?',
+        'Accepted?'
+      ],
     }
   },
 
@@ -47,6 +60,13 @@ export default {
     visitListing(url, e) {
       e.stopPropagation();
       window.open(url, "_blank");
+    },
+
+    updateRow(appId, e) {
+      e.stopPropagation();
+      this.saving = true;
+      alert(`udpate ${appId}`);
+      this.saving = false;
     }
     
   }
@@ -96,4 +116,7 @@ td {
   color: #00adb5;
 }
 
+.checkbox-col {
+  text-align: center;
+}
 </style>
