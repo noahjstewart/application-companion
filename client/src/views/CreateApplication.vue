@@ -29,14 +29,13 @@ export default {
     }),
 
     onSubmit(form) {
-      console.log(form);
       this.saving = true;
       this.$http.post('http://localhost:5000/api/applications', {
         ...form
       })
       .then(res => {
         this.addApplication({
-          application: form
+          application: res.data
         });
       })
       .catch(e => {
