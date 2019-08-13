@@ -2,7 +2,11 @@
   <div class="home">
     <div class="home-header">
       <h1>Application Companion</h1>
-      <button class="btn-add-application">Add Application</button>
+      <custom-button
+        msg="Add Application"
+        @btnClicked="addApplication">
+        <span slot="icon">+</span>
+      </custom-button>
     </div>
     <data-table
       :rows="applicationRows"
@@ -13,12 +17,14 @@
 <script>
 // @ is an alias to /src
 import DataTable from '@/components/DataTable.vue';
+import Button from '@/components/user_interface/Button.vue';
 import { mapState } from 'vuex';
 
 export default {
 
  components: {
-   'data-table': DataTable
+   'data-table': DataTable,
+   'custom-button': Button
  }, 
 
   data() {
@@ -32,6 +38,14 @@ export default {
     ...mapState({
       applications: state => state.applications
     })
+    
+  },
+
+  methods: {
+
+    addApplication() {
+      alert('add app');
+    }
     
   },
 
