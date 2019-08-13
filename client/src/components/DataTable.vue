@@ -11,10 +11,18 @@
         <td><span v-if="row.listing_url" @click="visitListing(row.listing_url, $event)" class="listing-url">Listing</span></td>
         <td>{{ row.applied_at | formatDate }}</td>
         <td>{{ row.notes }}</td>
-        <td class="checkbox-col"><input type="checkbox" v-model="row.response" @click="updateRow(row._id, $event)" /></td>
-        <td class="checkbox-col"><input type="checkbox" v-model="row.interview" @click="updateRow(row._id, $event)" /></td>
-        <td class="checkbox-col"><input type="checkbox" v-model="row.offer" @click="updateRow(row._id, $event)" /></td>
-        <td class="checkbox-col"><input type="checkbox" v-model="row.accepted" @click="updateRow(row._id, $event)" /></td>
+        <td :class="{ 'checkbox-col': true, 'checked': row.response, 'unchecked': !row.response }">
+          <input type="checkbox" v-model="row.response" @click="updateRow(row._id, $event)" />
+        </td>
+        <td :class="{ 'checkbox-col': true, 'checked': row.interview, 'unchecked': !row.interview }">
+          <input type="checkbox" v-model="row.interview" @click="updateRow(row._id, $event)" />
+        </td>
+        <td :class="{ 'checkbox-col': true, 'checked': row.offer, 'unchecked': !row.offer }">
+          <input type="checkbox" v-model="row.offer" @click="updateRow(row._id, $event)" />
+        </td>
+        <td :class="{ 'checkbox-col': true, 'checked': row.accepted, 'unchecked': !row.accepted }">
+          <input type="checkbox" v-model="row.accepted" @click="updateRow(row._id, $event)" />
+        </td>
       </tr>
     </table>
     <div v-else class="error-message">
@@ -118,5 +126,13 @@ td {
 
 .checkbox-col {
   text-align: center;
+}
+
+.checked {
+  background-color: #4ecca27e;
+}
+
+.unchecked {
+  background-color: #ff6767b0;
 }
 </style>
