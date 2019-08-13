@@ -11,6 +11,7 @@
     </div>
     <data-table
       :rows="applicationRows"
+      @goToRow="viewApplication"
     />
   </div>
 </template>
@@ -50,6 +51,10 @@ export default {
 
     setApplicationRows() {
       this.applicationRows = JSON.parse(JSON.stringify(this.applications));
+    },
+
+    viewApplication(appId) {
+      this.$router.push({ name: 'application-view', params: { id: appId } });
     }
     
   },

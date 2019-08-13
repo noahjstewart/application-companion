@@ -3,11 +3,11 @@
     <div class="data-table" v-if="rows.length">
       <table v-if="rows.length">
         <tr>
-          <th class="delete"></th>
+          <th class="delete" @click="deleteAll"><i class="fa fa-times" aria-hidden="true"></i></th>
           <th v-for="(col, index) in cols" :key="index"
           :class="{ 'checkbox-col': [5,6,7,8].includes(index) }">{{ col }}</th>
         </tr>
-        <tr v-for="(row, index) in rows" :key="index" @click="viewApplication(row._id)">
+        <tr v-for="(row, index) in rows" :key="index" @click="rowClicked(row._id)">
           <td class="delete" @click="deleteApplication(row._id, $event)"><i class="fa fa-trash-o" aria-hidden="true"></i></td>
           <td>{{ row.company }}</td>
           <td>{{ row.position }}</td>
@@ -65,8 +65,8 @@ export default {
 
   methods: {
 
-    viewApplication(appId) {
-      this.$router.push({ name: 'application-view', params: { id: appId } });
+    rowClicked(appId) {
+      this.$emit('goToRow', appId);
     },
 
     visitListing(url, e) {
@@ -77,16 +77,18 @@ export default {
     updateApplication(appId, e) {
       e.stopPropagation();
       // emit event dont handle here
-      this.saving = true;
       alert(`udpate ${appId}`);
-      this.saving = false;
     },
 
     deleteApplication(appId, e) {
       e.stopPropagation();
-      this.saving = true;
       alert(`delete ${appId}`);
-      this.saving = false;
+    },
+
+    deleteAll() {
+      this.saving = true;
+      alert('delete all');
+
     }
     
   }

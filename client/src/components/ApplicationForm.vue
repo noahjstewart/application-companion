@@ -17,6 +17,7 @@
     <label>
       Applied At
       <input type="date" v-model="form.applied_at" :placeholder="Date.now()">
+      <span v-if="!appliedAtExists">Applied at date required</span>
     </label><br>
     <label>
       Notes
@@ -83,6 +84,10 @@ export default {
 
     positionExists() {
       return this.form.position.length > 0;
+    },
+
+    appliedAtExists() {
+      return this.form.applied_at !== null;
     }
     
   },
@@ -90,7 +95,7 @@ export default {
   methods: {
 
     onSubmit() {
-      if (!this.companyExists || !this.positionExists) {
+      if (!this.companyExists || !this.positionExists || !this.appliedAtExists) {
         alert('fill out required fields');
       } else {
         this.$emit('onSubmit', this.form);

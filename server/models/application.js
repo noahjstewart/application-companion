@@ -18,7 +18,8 @@ const ApplicationSchema = new Schema({
   },
   applied_at: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    required: true
   },
   notes: {
     type: String,

@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
   Application.find({}).sort({company: 'asc'}).exec((err, applications) => {
     if (err) return res.sendStatus(404);
     console.log("Sending applications")
-    res.json(applications);
+    res.status(200).json(applications);
   });
 });
 
@@ -49,6 +49,15 @@ router.delete('/:id', (req, res) => {
     if (err) return res.json(err.message);
     console.log(`Removing application: ${application}`);
     res.status(200).json(application);
+  });
+});
+
+// DELETE /api/applications/delete/delete-all
+router.delete('/delete/delete-all', (req, res) => {
+  Application.deleteMany({}, err => {
+    if (err) return res.json(err.message);
+    console.log("Deleted all applications");
+    res.sendStatus(200);
   });
 });
 
