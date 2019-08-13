@@ -1,6 +1,5 @@
 <template>
-  <div class="application-container">
-    <div class="error-message" v-if="error">{{ error }}</div>
+  <div class="application-container" v-if="!applicationLoading">
     {{ application.company }}
     {{ application.position }}
   </div>
@@ -13,8 +12,6 @@ export default {
 
   data() {
     return {
-      application: {},
-      error: ''
     }
   },
 
@@ -22,21 +19,17 @@ export default {
 
     ...mapGetters({
       getApplication: 'getApplicationById'
-    })
-    
-  },
+    }),
 
-  created() {
-    this.application = this.getApplication(this.$route.params.id);
-    if (!this.application) this.error = "Application does not exist";
-  },
+    application() {
+      return this.getApplication(this.$route.params.id);
+    },
 
-  watch: {
-    $route() {
-      this.application = this.getApplication(this.$route.params.id);
-      if (!this.application) this.error = "Application does not exist";ß
+    applicationLoading() {
+      return this.application === undefined || this.application === null;
     }
+    
   }
-  
+
 }
 </script>

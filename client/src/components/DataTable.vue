@@ -3,26 +3,28 @@
     <div class="data-table" v-if="rows.length">
       <table v-if="rows.length">
         <tr>
+          <th class="delete"></th>
           <th v-for="(col, index) in cols" :key="index"
           :class="{ 'checkbox-col': [5,6,7,8].includes(index) }">{{ col }}</th>
         </tr>
         <tr v-for="(row, index) in rows" :key="index" @click="viewApplication(row._id)">
+          <td class="delete" @click="deleteApplication(row._id, $event)"><i class="fa fa-trash-o" aria-hidden="true"></i></td>
           <td>{{ row.company }}</td>
           <td>{{ row.position }}</td>
           <td><span v-if="row.listing_url" @click="visitListing(row.listing_url, $event)" class="listing-url">Listing</span></td>
           <td>{{ row.applied_at | formatDate }}</td>
           <td>{{ row.notes }}</td>
           <td :class="{ 'checkbox-col': true, 'checked': row.response, 'unchecked': !row.response }">
-            <input type="checkbox" v-model="row.response" @click="updateRow(row._id, $event)" />
+            <input type="checkbox" v-model="row.response" @click="updateApplication(row._id, $event)" />
           </td>
           <td :class="{ 'checkbox-col': true, 'checked': row.interview, 'unchecked': !row.interview }">
-            <input type="checkbox" v-model="row.interview" @click="updateRow(row._id, $event)" />
+            <input type="checkbox" v-model="row.interview" @click="updateApplication(row._id, $event)" />
           </td>
           <td :class="{ 'checkbox-col': true, 'checked': row.offer, 'unchecked': !row.offer }">
-            <input type="checkbox" v-model="row.offer" @click="updateRow(row._id, $event)" />
+            <input type="checkbox" v-model="row.offer" @click="updateApplication(row._id, $event)" />
           </td>
           <td :class="{ 'checkbox-col': true, 'checked': row.accepted, 'unchecked': !row.accepted }">
-            <input type="checkbox" v-model="row.accepted" @click="updateRow(row._id, $event)" />
+            <input type="checkbox" v-model="row.accepted" @click="updateApplication(row._id, $event)" />
           </td>
         </tr>
       </table>
@@ -72,10 +74,18 @@ export default {
       window.open(url, "_blank");
     },
 
-    updateRow(appId, e) {
+    updateApplication(appId, e) {
       e.stopPropagation();
+      // emit event dont handle here
       this.saving = true;
       alert(`udpate ${appId}`);
+      this.saving = false;
+    },
+
+    deleteApplication(appId, e) {
+      e.stopPropagation();
+      this.saving = true;
+      alert(`delete ${appId}`);
       this.saving = false;
     }
     
@@ -116,6 +126,11 @@ td {
   color: #393e46;
   border-bottom: 1px solid #c9d6df;
   white-space: nowrap;
+}
+
+.delete {
+  text-align: center;
+  color: #ff6768;
 }
 
 .listing-url {
