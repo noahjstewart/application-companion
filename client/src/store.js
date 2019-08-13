@@ -7,6 +7,13 @@ export default new Vuex.Store({
   state: {
     applications: []
   },
+  getters: {
+
+    getApplicationById: (state) => (id) => {
+      return state.applications.find(app => app._id === id);
+    }
+    
+  },
   mutations: {
 
     setApplications(state, payload) {
@@ -22,11 +29,11 @@ export default new Vuex.Store({
     }
     
   },
-  actions: {
+  // actions: {
 
-    loadApplications({ commit }) {
+  //   loadApplications({ commit }) {
       
-    }
+  //   }
     
-  }
+  // }
 })

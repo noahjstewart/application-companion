@@ -64,7 +64,7 @@ export default {
   methods: {
 
     viewApplication(appId) {
-      alert(`view ${appId}`);
+      this.$router.push({ name: 'application-view', params: { id: appId } });
     },
 
     visitListing(url, e) {

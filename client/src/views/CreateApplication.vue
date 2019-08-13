@@ -30,6 +30,7 @@ export default {
 
     onSubmit(form) {
       this.saving = true;
+      if (form.applied_at === null) form.applied_at = undefined;
       this.$http.post('http://localhost:5000/api/applications', {
         ...form
       })
@@ -37,6 +38,7 @@ export default {
         this.addApplication({
           application: res.data
         });
+        this.$router.push({ name: 'application-view', params: { id: res.data._id } });
       })
       .catch(e => {
         console.log(e);
