@@ -4,10 +4,10 @@
       <tr>
         <th v-for="(col, index) in cols" :key="index">{{ col }}</th>
       </tr>
-      <tr v-for="(row, index) in rows" :key="index">
+      <tr v-for="(row, index) in rows" :key="index" @click="viewApplication(row._id)">
         <td>{{ row.company }}</td>
         <td>{{ row.position }}</td>
-        <td><a v-if="row.listing_url" :href="row.listing_url" target="_blank">Listing</a></td>
+        <td><span v-if="row.listing_url" @click="visitListing(row.listing_url, $event)" class="listing-url">Listing</span></td>
         <td>{{ row.applied_at | formatDate }}</td>
         <td>{{ row.notes }}</td>
         <td>{{ row.response }}</td>
@@ -36,46 +36,63 @@ export default {
       required: true,
       default: []
     }
+  },
+
+  methods: {
+
+    viewApplication(appId) {
+      alert(`view ${appId}`);
+    },
+
+    visitListing(url, e) {
+      e.stopPropagation();
+      window.open(url, "_blank");
+    }
+    
   }
   
 }
 </script>
 
 <style scoped>
-table {
-  border-collapse: collapse;
-  text-align: left;
+.data-table {
+  overflow-x: auto;
+  box-shadow: 0px 10px 18px -7px black;
 }
 
 table {
   width: 100%;
   background-color: #eeeeee;
-  box-shadow: 0px 10px 18px -7px black;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+tr:hover {
+  cursor: pointer;
+  background-color: #c9d6df;
 }
 
 th, td {
-  padding: 2px 4px;
+  padding: 3px 6px;
 }
 
 th {
-  color: #232931;
-  border-bottom: 1px solid #232931;
+  color: #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  background-color: #393e46;
 }
 
 td {
   color: #393e46;
   border-bottom: 1px solid #c9d6df;
+  white-space: nowrap;
 }
 
-a {
+.listing-url {
   text-decoration: none;
 }
 
-a:visited {
-  color: #393e46;
-}
-
-a:hover {
+.listing-url:hover {
   color: #00adb5;
 }
 

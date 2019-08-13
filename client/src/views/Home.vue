@@ -1,8 +1,10 @@
 <template>
   <div class="home">
+    <button class="btn-add-application">Add Application</button>
+    <h1>Application Companion</h1>
     <data-table
       :cols="tableHeaders"
-      :rows="applications"
+      :rows="applicationRows"
     />
   </div>
 </template>
@@ -24,13 +26,14 @@ export default {
         'Company',
         'Position',
         'Listing URL',
-        'Applied At',
+        'Applied',
         'Notes',
         'Response?',
         'Interview?',
         'Offer?',
         'Accepted?'
-      ]
+      ],
+      applicationRows: []
     }
   },
 
@@ -40,7 +43,17 @@ export default {
       applications: state => state.applications
     })
     
+  },
+
+  mounted() {
+    this.applicationRows = JSON.parse(JSON.stringify(this.applications));
   }
   
 }
 </script>
+
+<style scoped>
+.btn-add-application {
+  float: right;
+}
+</style>

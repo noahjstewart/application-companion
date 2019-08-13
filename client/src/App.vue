@@ -80,4 +80,10 @@ body {
   border-radius: 4px;
   width: 50%;
 }
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 24px;
+  }
+}
 </style>

@@ -1,5 +1,5 @@
 {
-  "name": "application-auxiliary",
+  "name": "application-companion",
   "version": "1.0.0",
   "description": "Keep track of your job applications' statuses during your job search",
   "main": "index.js",
