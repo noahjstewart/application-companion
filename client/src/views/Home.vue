@@ -1,7 +1,9 @@
 <template>
   <div class="home">
-    <button class="btn-add-application">Add Application</button>
-    <h1>Application Companion</h1>
+    <div class="home-header">
+      <h1>Application Companion</h1>
+      <button class="btn-add-application">Add Application</button>
+    </div>
     <data-table
       :cols="tableHeaders"
       :rows="applicationRows"
@@ -53,7 +55,16 @@ export default {
 </script>
 
 <style scoped>
-.btn-add-application {
-  float: right;
+.home-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 767px) {
+  .home-header {
+    margin-bottom: 20px;
+  }
 }
 </style>
