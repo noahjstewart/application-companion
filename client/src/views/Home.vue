@@ -14,6 +14,7 @@
       @goToRow="viewApplication"
       @deleteApplication="deleteApplication"
       @deleteAll="deleteAllApplications"
+      @updateApplication="updateApplicationField"
     />
   </div>
 </template>
@@ -54,7 +55,8 @@ export default {
 
     ...mapActions({
       removeApplication: 'deleteApplication',
-      removeAllApplications: 'deleteAllApplications'
+      removeAllApplications: 'deleteAllApplications',
+      editApplicationField: 'updateApplicationField'
     }),
 
     setApplicationRows() {
@@ -83,6 +85,13 @@ export default {
           .then(res => this.loading = false)
           .catch(e => this.loading = false);
       }
+    },
+
+    updateApplicationField(payload) {
+      this.loading = true;
+      this.editApplicationField(payload)
+        .then(res => this.loading = false)
+        .catch(e => this.loading = false);
     }
     
   },

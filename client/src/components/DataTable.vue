@@ -15,16 +15,16 @@
           <td>{{ row.applied_at | formatDate }}</td>
           <td>{{ row.notes }}</td>
           <td :class="{ 'checkbox-col': true, 'checked': row.response, 'unchecked': !row.response }">
-            <input type="checkbox" v-model="row.response" @click="updateApplication(row._id, $event)" />
+            <input type="checkbox" name="response" v-model="row.response" @click="updateApplication(row._id, $event)" />
           </td>
           <td :class="{ 'checkbox-col': true, 'checked': row.interview, 'unchecked': !row.interview }">
-            <input type="checkbox" v-model="row.interview" @click="updateApplication(row._id, $event)" />
+            <input type="checkbox" name="interview" v-model="row.interview" @click="updateApplication(row._id, $event)" />
           </td>
           <td :class="{ 'checkbox-col': true, 'checked': row.offer, 'unchecked': !row.offer }">
-            <input type="checkbox" v-model="row.offer" @click="updateApplication(row._id, $event)" />
+            <input type="checkbox" name="offer" v-model="row.offer" @click="updateApplication(row._id, $event)" />
           </td>
           <td :class="{ 'checkbox-col': true, 'checked': row.accepted, 'unchecked': !row.accepted }">
-            <input type="checkbox" v-model="row.accepted" @click="updateApplication(row._id, $event)" />
+            <input type="checkbox" name="accepted" v-model="row.accepted" @click="updateApplication(row._id, $event)" />
           </td>
         </tr>
       </table>
@@ -76,8 +76,11 @@ export default {
 
     updateApplication(appId, e) {
       e.stopPropagation();
-      // emit event dont handle here
-      alert(`udpate ${appId}`);
+      this.$emit('updateApplication', {
+        id: appId,
+        field: e.target.name,
+        newValue: e.target.checked
+      });
     },
 
     deleteApplication(appId, e) {

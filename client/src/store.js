@@ -82,6 +82,23 @@ export default new Vuex.Store({
         }
       });
     },
+
+    updateApplicationField({ commit }, payload) {
+      return new Promise(async (resolve, reject) => {
+        try {
+          let reqPayload = {};
+          reqPayload[payload.field] = payload.newValue;
+          const res = await axios.put(`http://localhost:5000/api/applications/${payload.id}`, reqPayload);
+          commit('deleteApplication', {
+            appId: appId
+          });
+          resolve(res.data);
+          resolve(true);
+        } catch (err) {
+          reject(err)
+        }
+      });
+    }
     
   }
 })
