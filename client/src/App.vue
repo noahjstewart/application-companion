@@ -26,8 +26,8 @@ export default {
   mounted() {
     this.loading = true;
     this.loadApplications()
-    .catch(err => { this.error = 'Failed to load applications' })
-    .finally(() => { this.loading = false; });
+      .catch(err => { this.error = 'Failed to load applications' })
+      .finally(() => { this.loading = false; });
   },
 
   methods: {

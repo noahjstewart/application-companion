@@ -27,6 +27,17 @@ export default new Vuex.Store({
 
     editApplication(state, payload) {
 
+    },
+
+    deleteApplication(state, payload) {
+      let index = state.applications.findIndex(a => a._id === payload.appId);
+      if (state.applications[index]) {
+        state.applications.splice(index, 1);
+      }
+    },
+
+    deleteAllApplications(state) {
+      state.applications = [];
     }
     
   },
@@ -44,7 +55,22 @@ export default new Vuex.Store({
           reject(err)
         }
       });
-    }
+    },
+
+    deleteApplication({ commit }, appId) {
+      console.log(appId);
+      return new Promise(async (resolve, reject) => {
+        try {
+          const res = await axios.delete(`http://localhost:5000/api/applications/${appId}`);
+          commit('deleteApplication', {
+            appId: appId
+          });
+          resolve(res.data);
+        } catch (err) {
+          reject(err)
+        }
+      });
+    },    
     
   }
 })

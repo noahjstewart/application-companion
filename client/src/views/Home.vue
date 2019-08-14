@@ -12,6 +12,7 @@
     <data-table
       :rows="applicationRows"
       @goToRow="viewApplication"
+      @deleteApplication="deleteApplication"
     />
   </div>
 </template>
@@ -20,7 +21,7 @@
 // @ is an alias to /src
 import DataTable from '@/components/DataTable.vue';
 import Button from '@/components/user_interface/Button.vue';
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
 
@@ -31,6 +32,7 @@ export default {
 
   data() {
     return {
+      loading: false,
       applicationRows: []
     }
   },
@@ -49,12 +51,26 @@ export default {
 
   methods: {
 
+    ...mapActions({
+      removeApplication: 'deleteApplication'
+    }),
+
     setApplicationRows() {
       this.applicationRows = JSON.parse(JSON.stringify(this.applications));
     },
 
     viewApplication(appId) {
       this.$router.push({ name: 'application-view', params: { id: appId } });
+    },
+
+    deleteApplication(appId) {
+      let conf = confirm("Are you sure you want to delete this application?");
+      if (conf) {
+        this.loading = true;
+        this.removeApplication(appId)
+          .then(res => this.loading = false)
+          .catch(e => this.loading = false);
+      }
     }
     
   },

@@ -82,7 +82,7 @@ export default {
 
     deleteApplication(appId, e) {
       e.stopPropagation();
-      alert(`delete ${appId}`);
+      this.$emit('deleteApplication', appId);
     },
 
     deleteAll() {
