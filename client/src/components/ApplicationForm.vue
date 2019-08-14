@@ -39,24 +39,34 @@
       Accepted?
       <input type="checkbox" v-model="form.accepted">
     </label><br>
-    <input type="submit" value="Create">
+    <input type="submit" :value="editing ? 'Save' : 'Create'">
   </form>
 </template>
 
 <script>
 import Button from '@/components/user_interface/Button.vue';
+import { Mixins } from '@/mixins.js';
 
 export default {
 
   components: {
     'custom-button': Button
   },
+
+  mixins: [
+    Mixins
+  ],
   
   props: {
     editing: {
       type: Boolean,
       required: false,
       default: false
+    },
+
+    application: {
+      type: Object,
+      required: false
     }
   },
 
@@ -92,7 +102,19 @@ export default {
     
   },
 
+  created() {
+    this.setEditing();
+  },
+
   methods: {
+
+    setEditing() {
+      if (this.editing) {
+        this.form = JSON.parse(JSON.stringify(this.application));
+        let appliedAt = new Date(this.form.applied_at);
+        this.form.applied_at = `${appliedAt.getFullYear()}-${this.determineMonth(appliedAt)}-${this.determineDate(appliedAt)}`;
+      }
+    },
 
     onSubmit() {
       if (!this.companyExists || !this.positionExists || !this.appliedAtExists) {
@@ -100,6 +122,14 @@ export default {
       } else {
         this.$emit('onSubmit', this.form);
       }
+    }
+    
+  },
+
+  watch: {
+
+    editing() {
+      this.setEditing();
     }
     
   }
