@@ -8,8 +8,7 @@
 
 <script>
 import TopNav from '@/components/navigation/TopNav.vue';
-import { mapMutations } from 'vuex';
-import axios from 'axios';
+import { mapActions } from 'vuex';
 
 export default {
 
@@ -25,31 +24,18 @@ export default {
   },
   
   mounted() {
-    this.loadApplications();
+    this.loading = true;
+    this.loadApplications()
+    .catch(err => { this.error = 'Failed to load applications' })
+    .finally(() => { this.loading = false; });
   },
 
   methods: {
 
-    ...mapMutations({
-      setApplications: 'setApplications'
-    }),
+    ...mapActions({
+      loadApplications: 'loadApplications'
+    })
 
-    loadApplications() {
-      this.loading = true;
-      this.$http.get('http://localhost:5000/api/applications')
-      .then(res => {
-        this.setApplications({
-          applications: res.data
-        });
-      })
-      .catch(e => {
-        this.error = 'Failed to load applications';
-      })
-      .finally(() => {
-        this.loading = false;
-      });
-    }
-    
   }
   
 }

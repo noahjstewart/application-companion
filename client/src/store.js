@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
@@ -29,11 +30,21 @@ export default new Vuex.Store({
     }
     
   },
-  // actions: {
+  actions: {
 
-  //   loadApplications({ commit }) {
-      
-  //   }
+    loadApplications({ commit, state }) {
+      return new Promise( async (resolve, reject) => {
+        try {
+          const res = await axios.get('http://localhost:5000/api/applications');
+          commit('setApplications', {
+            applications: res.data
+          });
+          resolve(state.applications);
+        } catch(err) {
+          reject(err)
+        }
+      });
+    }
     
-  // }
+  }
 })
