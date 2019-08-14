@@ -13,6 +13,7 @@
       :rows="applicationRows"
       @goToRow="viewApplication"
       @deleteApplication="deleteApplication"
+      @deleteAll="deleteAllApplications"
     />
   </div>
 </template>
@@ -52,7 +53,8 @@ export default {
   methods: {
 
     ...mapActions({
-      removeApplication: 'deleteApplication'
+      removeApplication: 'deleteApplication',
+      removeAllApplications: 'deleteAllApplications'
     }),
 
     setApplicationRows() {
@@ -68,6 +70,16 @@ export default {
       if (conf) {
         this.loading = true;
         this.removeApplication(appId)
+          .then(res => this.loading = false)
+          .catch(e => this.loading = false);
+      }
+    },
+
+    deleteAllApplications() {
+      let conf = confirm("Are you sure you want to delete all applications?");
+      if (conf) {
+        this.loading = true;
+        this.removeAllApplications()
           .then(res => this.loading = false)
           .catch(e => this.loading = false);
       }

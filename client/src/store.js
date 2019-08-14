@@ -58,7 +58,6 @@ export default new Vuex.Store({
     },
 
     deleteApplication({ commit }, appId) {
-      console.log(appId);
       return new Promise(async (resolve, reject) => {
         try {
           const res = await axios.delete(`http://localhost:5000/api/applications/${appId}`);
@@ -70,7 +69,19 @@ export default new Vuex.Store({
           reject(err)
         }
       });
-    },    
+    },
+    
+    deleteAllApplications({ commit }) {
+      return new Promise(async (resolve, reject) => {
+        try {
+          const res = await axios.delete('http://localhost:5000/api/applications/delete/delete-all');
+          commit('deleteAllApplications');
+          resolve(res.data);
+        } catch (err) {
+          reject(err)
+        }
+      });
+    },
     
   }
 })

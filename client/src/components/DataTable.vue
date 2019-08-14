@@ -87,8 +87,7 @@ export default {
 
     deleteAll() {
       this.saving = true;
-      alert('delete all');
-
+      this.$emit('deleteAll');
     }
     
   }
