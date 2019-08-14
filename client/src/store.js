@@ -26,7 +26,10 @@ export default new Vuex.Store({
     },
 
     editApplication(state, payload) {
-
+      let index = state.applications.findIndex(a => a._id === payload.appId);
+      if (state.applications[index]) {
+        Vue.set(state.applications, index, payload.application);
+      }
     },
 
     deleteApplication(state, payload) {
@@ -89,16 +92,31 @@ export default new Vuex.Store({
           let reqPayload = {};
           reqPayload[payload.field] = payload.newValue;
           const res = await axios.put(`http://localhost:5000/api/applications/${payload.id}`, reqPayload);
-          commit('deleteApplication', {
-            appId: appId
+          commit('editApplication', {
+            appId: payload.id,
+            application: res.data
           });
           resolve(res.data);
-          resolve(true);
         } catch (err) {
           reject(err)
         }
       });
-    }
+    },
+
+    // updateApplication({ commit }, payload) {
+    //   return new Promise(async (resolve, reject) => {
+    //     try {
+    //       const res = await axios.put(`http://localhost:5000/api/applications/${payload.id}`, reqPayload);
+    //       commit('editApplication', {
+    //         appId: payload.id
+    //       });
+    //       resolve(res.data);
+    //       resolve(true);
+    //     } catch (err) {
+    //       reject(err)
+    //     }
+    //   });
+    // }
     
   }
 })
