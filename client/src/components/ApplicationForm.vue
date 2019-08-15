@@ -134,7 +134,6 @@ export default {
     },
 
     onSubmit(e) {
-      console.log("onsubmit");
       e.preventDefault();
       if (!this.companyExists || !this.positionExists || !this.appliedAtExists) {
         if (!this.companyExists) this.attemptedSubmitNoCompany = true;
