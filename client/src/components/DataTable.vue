@@ -13,7 +13,7 @@
           <td>{{ row.position }}</td>
           <td><span v-if="row.listing_url" @click="visitListing(row.listing_url, $event)" class="listing-url">Listing</span></td>
           <td>{{ row.applied_at | formatDate }}</td>
-          <td>{{ row.notes }}</td>
+          <td class="notes-cell">{{ row.notes }}</td>
           <td :class="{ 'checkbox-col': true, 'checked': row.response, 'unchecked': !row.response }">
             <input type="checkbox" name="response" v-model="row.response" @click="updateApplication(row._id, $event)" />
           </td>
@@ -143,6 +143,12 @@ td {
 
 .listing-url:hover {
   color: #00adb5;
+}
+
+.notes-cell {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .checkbox-col {

@@ -20,9 +20,10 @@
       </div>
       <div class="listing-box padded light-back-with-shadow rounded">
         <p class="bold">Link to Listing</p>
-        <a v-if="application.listing_url" class="listing-url" target="_blank">
+        <a v-if="application.listing_url" class="listing-url" target="_blank"
+          :href="application.listing_url">
           <i class="fa fa-external-link" aria-hidden="true"></i>
-          {{ application.listing_url }}
+          Job post
         </a>
         <p v-else><i>URL not included yet</i></p>
       </div>
@@ -203,6 +204,7 @@ export default {
 
 .listing-url {
   text-decoration: none;
+  color: #393e46;
 }
 
 .listing-url:hover {
