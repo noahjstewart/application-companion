@@ -1,13 +1,16 @@
 <template>
   <div class="application-container" v-if="!applicationLoading">
-    <div class="application-view" v-if="!editing">
-      {{ application.company }}
-      {{ application.position }}
-      <custom-button 
-        msg="Edit Application"
-        @btnClicked="editApplication">
-        <span slot="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+    <div class="application-header">
+      <h1>{{ application.position }} @ {{ application.company }}</h1>
+      <custom-button
+        :msg="editing ? 'Cancel' : 'Edit Application'"
+        @btnClicked="editing ? cancelEdit() : editApplication()">
+        <span slot="icon">
+          <i :class="editing ? 'fa fa-ban' : 'fa fa-pencil'" aria-hidden="true"></i>
+        </span>
       </custom-button>
+    </div>
+    <div class="application-view" v-if="!editing">
     </div>
     <div class="edit-view" v-else>
       <application-form
@@ -60,6 +63,11 @@ export default {
       updateApplication: 'updateApplication'
     }),
 
+    cancelEdit() {
+      this.editing = false;
+      this.applicationClone = JSON.parse(JSON.stringify(this.application));
+    },
+
     editApplication() {
       this.applicationClone = JSON.parse(JSON.stringify(this.application));
       this.applicationClone = {
@@ -91,7 +99,10 @@ export default {
 </script>
 
 <style scoped>
-.application-container {
-  margin-top: 20px;
+.application-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>
