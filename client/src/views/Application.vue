@@ -89,3 +89,9 @@ export default {
 
 }
 </script>
+
+<style scoped>
+.application-container {
+  margin-top: 20px;
+}
+</style>
