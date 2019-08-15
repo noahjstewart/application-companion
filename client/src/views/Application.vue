@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import Button from '@/components/user_interface/Button.vue';
 import ApplicationForm from '@/components/ApplicationForm.vue';
 
@@ -32,6 +32,7 @@ export default {
 
   data() {
     return {
+      loading: false,
       editing: false,
       applicationClone: {}
     }
@@ -55,6 +56,10 @@ export default {
 
   methods: {
 
+    ...mapActions({
+      updateApplication: 'updateApplication'
+    }),
+
     editApplication() {
       this.applicationClone = JSON.parse(JSON.stringify(this.application));
       this.applicationClone = {
@@ -72,7 +77,12 @@ export default {
     },
 
     onSubmit(form) {
-      alert(form);
+      this.loading = true;
+      form.id = this.$route.params.id;
+      this.updateApplication(form)
+        .then(res => this.editing = false )
+        .catch(e => alert(e.message))
+        .finally(() => { this.loading = false });
     }
     
   }

@@ -103,20 +103,22 @@ export default new Vuex.Store({
       });
     },
 
-    // updateApplication({ commit }, payload) {
-    //   return new Promise(async (resolve, reject) => {
-    //     try {
-    //       const res = await axios.put(`http://localhost:5000/api/applications/${payload.id}`, reqPayload);
-    //       commit('editApplication', {
-    //         appId: payload.id
-    //       });
-    //       resolve(res.data);
-    //       resolve(true);
-    //     } catch (err) {
-    //       reject(err)
-    //     }
-    //   });
-    // }
+    updateApplication({ commit }, payload) {
+      let id = payload.id;
+      delete payload.id;
+      return new Promise(async (resolve, reject) => {
+        try {
+          const res = await axios.put(`http://localhost:5000/api/applications/${id}`, payload);
+          commit('editApplication', {
+            appId: id,
+            application: res.data
+          });
+          resolve(res.data);
+        } catch (err) {
+          reject(err)
+        }
+      });
+    }
     
   }
 })
