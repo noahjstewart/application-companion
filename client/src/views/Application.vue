@@ -170,7 +170,7 @@ export default {
 
 .application-view {
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: auto;
   grid-template-rows: auto;
   grid-template-areas:
     "title-comp applied-notes"
