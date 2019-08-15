@@ -36,33 +36,24 @@
       <div class="checkboxes padded light-back-with-shadow rounded">
         <span>
           <p class="bold">Response?</p>
-          <p v-if="application.response" style="margin-bottom: 10px;">Yes</p>
-          <p v-else style="margin-bottom: 10px;">No</p>
+          <p v-if="application.response" class="checkbox-bool">Yes</p>
+          <p v-else class="checkbox-bool">No</p>
         </span>
         <span>
-          <p class="bold">Response?</p>
-          <p v-if="application.response" style="margin-bottom: 10px;">Yes</p>
-          <p v-else style="margin-bottom: 10px;">No</p>
+          <p class="bold">Interview?</p>
+          <p v-if="application.interview" class="checkbox-bool">Yes</p>
+          <p v-else class="checkbox-bool">No</p>
         </span>
         <span>
-          <p class="bold">Response?</p>
-          <p v-if="application.response" style="margin-bottom: 10px;">Yes</p>
-          <p v-else style="margin-bottom: 10px;">No</p>
+          <p class="bold">Offer?</p>
+          <p v-if="application.offer" class="checkbox-bool">Yes</p>
+          <p v-else class="checkbox-bool">No</p>
         </span>
         <span>
-          <p class="bold">Response?</p>
-          <p v-if="application.response" style="margin-bottom: 10px;">Yes</p>
-          <p v-else style="margin-bottom: 10px;">No</p>
+          <p class="bold">Accepted?</p>
+          <p v-if="application.accepted" class="checkbox-bool">Yes</p>
+          <p v-else class="checkbox-bool">No</p>
         </span>
-        <!-- <p class="bold">Interview?</p>
-        <p v-if="application.interview">Yes</p>
-        <p v-else>No</p>
-        <p class="bold">Offer?</p>
-        <p v-if="application.offer">Yes</p>
-        <p v-else>No</p>
-        <p class="bold">Accepted?</p>
-        <p v-if="application.accepted">Yes</p>
-        <p v-else>No</p> -->
       </div>
       <custom-button
         class="btn-delete"
@@ -231,6 +222,13 @@ export default {
 
 .checkboxes {
   grid-area: checkboxes;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.checkbox-bool {
+  text-align: center;
 }
 
 p {
@@ -269,6 +267,15 @@ p {
 
   .btn-delete {
     width: 100%;
+  }
+
+  .checkboxes {
+    display: block;
+  }
+
+  .checkbox-bool {
+    margin-bottom: 10px;
+    text-align: left;
   }
   
 }
