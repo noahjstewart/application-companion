@@ -10,6 +10,8 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 * Have [MongoDB](https://docs.mongodb.com/manual/installation/) installed
+* Have [Nodejs](https://nodejs.org/en/) installed
+* Have [yarn](https://yarnpkg.com/en/) installed if you would rather use it than npm
 
 ### Installation
 
@@ -27,7 +29,7 @@ cd ../server
 npm install      # or with yarn: yarn install
 ```
 
-3) Run the app (3 terminals)
+3) Run the app (3 terminals):
 
 Start the Vue front end:
 ```bash
@@ -47,7 +49,7 @@ npm run dev
 ```
 
 Visit at:
-* [Local](http://localhost:8080/)
+* http://localhost:8080/
 
 
 ## Contributing
