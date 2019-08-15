@@ -1,0 +1,70 @@
+# Application Companion
+
+Application Companion is a tool to help keep track of your job applications during your job hunt.
+
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+* Have [MongoDB](https://docs.mongodb.com/manual/installation/) installed
+
+### Installation
+
+1) Clone the repo:
+```
+$ git clone https://github.com/noahjstewart/application-companion.git
+```
+
+2) Install the dependencies:
+
+```bash
+cd client
+npm install      # or with yarn: yarn install
+cd ../server
+npm install      # or with yarn: yarn install
+```
+
+3) Run the app (3 terminals)
+
+Start the Vue front end:
+```bash
+cd client
+npm run serve      # or with yarn: yarn serve
+```
+
+MongoDB instance:
+```bash
+mongod
+```
+
+Node back end:
+```bash
+cd server
+npm run dev
+```
+
+Visit at:
+* [Local](http://localhost:8080/)
+* [Network](http://172.16.43.82:8080/)
+
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## Deployment
+
+Add additional notes about how to deploy this on a live system
+
+## Built With
+
+* [Node](https://nodejs.org/en/)
+* [Express](http://expressjs.com/)
+* [Vue](https://vuejs.org/)
+* [Mongoose](https://mongoosejs.com/)
+* [MongoDB](https://www.mongodb.com/)
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
