@@ -60,6 +60,20 @@ export default new Vuex.Store({
       });
     },
 
+    createApplication({ commit }, payload) {
+      return new Promise(async (resolve, reject) => {
+        try {
+          const res = await axios.post('http://localhost:5000/api/applications', payload);
+          commit('addApplication', {
+            application: res.data
+          });
+          resolve(res.data);
+        } catch (err) {
+          reject(err)
+        }
+      });
+    },
+
     deleteApplication({ commit }, appId) {
       return new Promise(async (resolve, reject) => {
         try {

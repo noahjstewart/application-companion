@@ -97,7 +97,7 @@ export default {
     },
 
     appliedAtExists() {
-      return this.form.applied_at !== null;
+      return this.form.applied_at !== null && this.form.applied_at !== "";
     }
     
   },

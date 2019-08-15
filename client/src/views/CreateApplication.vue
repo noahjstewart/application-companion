@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 import ApplicationForm from '@/components/ApplicationForm.vue';
 
 export default {
@@ -24,28 +24,18 @@ export default {
 
   methods: {
 
-    ...mapMutations({
-      addApplication: 'addApplication'
+    ...mapActions({
+      addApplication: 'createApplication'
     }),
 
     onSubmit(form) {
       this.saving = true;
-      if (form.applied_at === null) form.applied_at = undefined;
-      this.$http.post('http://localhost:5000/api/applications', {
-        ...form
-      })
-      .then(res => {
-        this.addApplication({
-          application: res.data
-        });
-        this.$router.push({ name: 'application-view', params: { id: res.data._id } });
-      })
-      .catch(e => {
-        console.log(e);
-      })
-      .finally(() => {
-        this.saving = false;
-      });
+      this.addApplication(form)
+        .then(res => {
+          this.$router.push({ name: 'application-view', params: { id: res._id } });
+        })
+        .catch(e => console.log(e))
+        .finally(() => { this.saving = false; });
     }
     
   }
