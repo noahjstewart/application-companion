@@ -3,14 +3,14 @@
     <label class="required-label">
       Company Name<span class="red">*</span>
       <transition name="slide" appear>
-        <p v-show="attemptedSubmitNoCompany" class="red sm-text required-text">Required</p>
+        <p v-show="!companyExists && attemptedSubmitNoCompany" class="red sm-text required-text">Required</p>
       </transition>
       <input type="text" v-model="form.company" placeholder="Company">
     </label><br><br>
     <label class="required-label">
       Position Title<span class="red">*</span>
       <transition name="slide" appear>
-        <p v-show="attemptedSubmitNoPosition" class="red sm-text required-text">Required</p>
+        <p v-show="!positionExists && attemptedSubmitNoPosition" class="red sm-text required-text">Required</p>
       </transition>
       <input type="text" v-model="form.position" placeholder="Position">
     </label><br><br>
@@ -104,15 +104,15 @@ export default {
   computed: {
 
     companyExists() {
-      return this.form.company.length > 0;
+      return this.form.company.trim().length > 0;
     },
 
     positionExists() {
-      return this.form.position.length > 0;
+      return this.form.position.trim().length > 0;
     },
 
     appliedAtExists() {
-      return this.form.applied_at !== null && this.form.applied_at !== "";
+      return this.form.applied_at !== null && this.form.applied_at.trim() !== "";
     }
     
   },
@@ -137,6 +137,7 @@ export default {
         if (!this.companyExists) this.attemptedSubmitNoCompany = true;
         if (!this.positionExists) this.attemptedSubmitNoPosition = true;
         if (!this.appliedAtExists) this.attemptedSubmitNoAppliedAt = true;
+        alert("Please fill out all required fields");
       } else {
         this.attemptedSubmitNoCompany = false;
         this.attemptedSubmitNoPosition = false;
@@ -200,15 +201,6 @@ input:focus {
   display: none;
 }
 
-.red {
-  color: #ff6768;
-}
-
-.sm-text {
-  font-size: .75rem;
-  margin: 0;
-}
-
 .required-label {
   position: relative;
 }
@@ -221,6 +213,13 @@ input:focus {
 
 .btn-submit {
   width: 100%;
+  background-color: #4ecca3;
+}
+
+.btn-submit:hover {
+  background-color: #35aa83;
+  color: #eeeeee;
+  border-color: #35aa83;
 }
 
 .slide-enter-to {

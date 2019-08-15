@@ -73,6 +73,41 @@ body {
   width: 50%;
 }
 
+.red {
+  color: #ff6768;
+}
+
+.sm-text {
+  font-size: .75rem;
+  margin: 0;
+}
+
+.margin-t0 {
+  margin-top: 0 !important;
+}
+
+.margin-b0 {
+  margin-bottom: 0 !important;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.light-back-with-shadow {
+  background-color: #eeeeee;
+  color: #393e46;
+  box-shadow: 0px 10px 18px -7px black;
+}
+
+.rounded {
+  border-radius: 4px;
+}
+
+.padded {
+  padding: 2vh 4vw;
+}
+
 @media (max-width: 767px) {
   h1 {
     font-size: 24px;
