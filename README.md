@@ -48,7 +48,6 @@ npm run dev
 
 Visit at:
 * [Local](http://localhost:8080/)
-* [Network](http://172.16.43.82:8080/)
 
 
 ## Contributing
