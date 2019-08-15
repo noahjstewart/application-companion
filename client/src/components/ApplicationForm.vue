@@ -1,6 +1,5 @@
 <template>
   <form @submit.prevent="onSubmit">
-  <!-- <div class="form"> -->
     <label class="required-label">
       Company Name<span class="red">*</span>
       <transition name="slide" appear>
@@ -54,7 +53,6 @@
         :inverted="true"
         @btnClicked="onSubmit"/>
   </form>
-  <!-- </div> -->
 </template>
 
 <script>
