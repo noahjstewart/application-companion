@@ -6,10 +6,6 @@
         <span class="home-text">Home</span>
       </div>
     </router-link>
-    <div class="link">
-      <i class="fa fa-sign-out" aria-hidden="true"></i>
-      <span class="logout-text">Logout</span>
-    </div>
   </div>
 </template>
 
@@ -38,7 +34,7 @@ a:visited {
 }
 
 @media (max-width: 375px) {
-  .home-text, .logout-text {
+  .home-text {
     display: none;
   }
 }

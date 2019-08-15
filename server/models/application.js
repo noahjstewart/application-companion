@@ -41,9 +41,6 @@ const ApplicationSchema = new Schema({
   accepted: {
     type: Boolean,
     default: false
-  },
-  _user_id: {
-    type: Number
   }
 }, { 
   timestamps: {
