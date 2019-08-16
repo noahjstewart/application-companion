@@ -1,5 +1,11 @@
 <template>
   <div class="application-container" v-if="!applicationLoading">
+    <loading
+      :active="loading || applicationLoading"
+      loader="dots"
+      background-color="#eeeeee"
+      color="#232931"
+      :opacity="0.7"/>
     <p class="sm-text margin-t0 margin-b0 application-for">Application for:</p>
     <div class="application-header">
       <h1>{{ application.position }} @ {{ application.company }}</h1>

@@ -1,5 +1,11 @@
 <template>
   <div class="home">
+    <loading
+      :active="loading"
+      loader="dots"
+      background-color="#eeeeee"
+      color="#232931"
+      :opacity="0.7"/>
     <div class="home-header">
       <h1>Application Companion</h1>
       <router-link :to="{ name: 'create-application' }">

@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    <loading
+      :active="loading"
+      loader="dots"
+      background-color="#eeeeee"
+      color="#232931"
+      :opacity="0.7"/>
     <top-nav />
     <div v-if="error" class="error-message">{{ error }}</div>
     <router-view />

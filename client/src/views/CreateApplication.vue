@@ -1,5 +1,11 @@
 <template>
   <div class="add-application">
+    <loading
+      :active="saving"
+      loader="dots"
+      background-color="#eeeeee"
+      color="#232931"
+      :opacity="0.7"/>
     <h1>Add Application</h1>
     <application-form 
       @onSubmit="onSubmit"/>
@@ -42,3 +48,9 @@ export default {
   
 }
 </script>
+
+<style scoped>
+.add-application {
+  position: relative;
+}
+</style>
