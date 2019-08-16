@@ -5,7 +5,8 @@
       loader="dots"
       background-color="#eeeeee"
       color="#232931"
-      :opacity="0.7"/>
+      :opacity="0.7"
+      :z-index="5001"/>
     <p class="sm-text margin-t0 margin-b0 application-for">Application for:</p>
     <div class="application-header">
       <h1>{{ application.position }} @ {{ application.company }}</h1>
@@ -148,8 +149,21 @@ export default {
       this.loading = true;
       form.id = this.$route.params.id;
       this.updateApplication(form)
-        .then(res => this.editing = false )
-        .catch(e => alert(e.message))
+        .then(() => {
+          this.$notify({
+            group: 'app',
+            type: 'success',
+            text: 'Application saved!',
+          });
+          this.editing = false;
+        })
+        .catch(err => {
+          this.$notify({
+            group: 'app',
+            type: 'error',
+            text: `Failed to delete application: ${err.message}`,
+          });
+        })
         .finally(() => { this.loading = false });
     },
 
@@ -158,8 +172,21 @@ export default {
       let conf = confirm("Are you sure you want to delete this application?");
       if (conf) {
         this.removeApplication(this.$route.params.id)
-          .then(() => { this.$router.push({ name: 'home' }) })
-          .catch(e => console.log(e))
+          .then(() => {
+            this.$notify({
+              group: 'app',
+              type: 'success',
+              text: 'Application deleted',
+            });
+            this.$router.push({ name: 'home' });
+          })
+          .catch(err => {
+            this.$notify({
+              group: 'app',
+              type: 'error',
+              text: `Failed to delete application: ${err.message}`,
+            });
+          })
           .finally(() => this.loading = false);
       }
     }

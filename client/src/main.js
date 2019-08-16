@@ -6,9 +6,12 @@ import axios from 'axios'
 import './filters';
 import './components';
 
+import Notifications from 'vue-notification';
+
 Vue.config.productionTip = false
 
 Vue.prototype.$http = axios;
+Vue.use(Notifications);
 
 new Vue({
   router,

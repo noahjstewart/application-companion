@@ -5,7 +5,9 @@
       loader="dots"
       background-color="#eeeeee"
       color="#232931"
-      :opacity="0.7"/>
+      :opacity="0.7"
+      :z-index="5001"/>
+    <notifications group="app" position="top center" classes="app-notification" :duration="2500"/>
     <top-nav />
     <div v-if="error" class="error-message">{{ error }}</div>
     <router-view />
@@ -70,6 +72,23 @@ body {
   color: #eeeeee;
 }
 
+.vue-notification-template.app-notification {
+  padding: 15px;
+  color: #eeeeee;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 3px;
+  margin: 4px 4px;
+}
+
+.app-notification.success {
+  background: #4ecca3;
+}
+
+.app-notification.error {
+  background: #ff6768;
+}
+
 .error-message {
   margin: 0 auto;
   background-color: #ff6768;
@@ -118,5 +137,13 @@ body {
   h1 {
     font-size: 24px;
   }
+}
+
+@media (max-width: 376px) {
+  .vue-notification-template.app-notification {
+    padding: 10px;
+    margin: 4px 30px;
+  }
+
 }
 </style>

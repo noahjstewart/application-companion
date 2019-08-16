@@ -5,7 +5,8 @@
       loader="dots"
       background-color="#eeeeee"
       color="#232931"
-      :opacity="0.7"/>
+      :opacity="0.7"
+      :z-index="5001"/>
     <h1>Add Application</h1>
     <application-form 
       @onSubmit="onSubmit"/>
@@ -38,9 +39,20 @@ export default {
       this.saving = true;
       this.addApplication(form)
         .then(res => {
+          this.$notify({
+            group: 'app',
+            type: 'success',
+            text: 'Application created!',
+          });
           this.$router.push({ name: 'application-view', params: { id: res._id } });
         })
-        .catch(e => console.log(e))
+        .catch(err => {
+          this.$notify({
+            group: 'app',
+            type: 'error',
+            text: `Failed to create application: ${err.message}`,
+          });
+        })
         .finally(() => { this.saving = false; });
     }
     

@@ -5,7 +5,8 @@
       loader="dots"
       background-color="#eeeeee"
       color="#232931"
-      :opacity="0.7"/>
+      :opacity="0.7"
+      :z-index="5001"/>
     <div class="home-header">
       <h1>Application Companion</h1>
       <router-link :to="{ name: 'create-application' }">
@@ -78,8 +79,21 @@ export default {
       if (conf) {
         this.loading = true;
         this.removeApplication(appId)
-          .then(res => this.loading = false)
-          .catch(e => this.loading = false);
+          .then(() => {
+            this.$notify({
+              group: 'app',
+              type: 'success',
+              text: 'Application deleted',
+            });
+          })
+          .catch(err => {
+            this.$notify({
+              group: 'app',
+              type: 'error',
+              text: `Failed to delete application: ${err.message}`,
+            });
+          })
+          .finally(() => this.loading = false);
       }
     },
 
@@ -88,16 +102,42 @@ export default {
       if (conf) {
         this.loading = true;
         this.removeAllApplications()
-          .then(res => this.loading = false)
-          .catch(e => this.loading = false);
+          .then(() => {
+            this.$notify({
+              group: 'app',
+              type: 'success',
+              text: 'Applications deleted',
+            });
+          })
+          .catch(err => {
+            this.$notify({
+              group: 'app',
+              type: 'error',
+              text: `Failed to delete applications: ${err.message}`,
+            });
+          })
+          .finally(() => this.loading = false);
       }
     },
 
     updateApplicationField(payload) {
       this.loading = true;
       this.editApplicationField(payload)
-        .then(res => this.loading = false)
-        .catch(e => this.loading = false);
+        .then(() => {
+          this.$notify({
+            group: 'app',
+            type: 'success',
+            text: 'Application saved!',
+          });
+        })
+        .catch(err => {
+          this.$notify({
+            group: 'app',
+            type: 'error',
+            text: `Failed to delete application: ${err.message}`,
+          });
+        })
+        .finally(() => this.loading = false);
     }
     
   },

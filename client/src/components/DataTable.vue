@@ -41,8 +41,7 @@ export default {
   props: {
     rows: {
       type: Array,
-      required: false,
-      default: []
+      required: false
     }
   },
 
