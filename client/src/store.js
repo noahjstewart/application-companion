@@ -50,10 +50,12 @@ export default new Vuex.Store({
       return new Promise( async (resolve, reject) => {
         try {
           const res = await axios.get('http://localhost:5000/api/applications');
-          commit('setApplications', {
-            applications: res.data
-          });
-          resolve(state.applications);
+          setTimeout(() => {
+            commit('setApplications', {
+              applications: res.data
+            });
+            resolve(state.applications);
+          }, 1000);
         } catch(err) {
           reject(err)
         }
@@ -64,10 +66,12 @@ export default new Vuex.Store({
       return new Promise(async (resolve, reject) => {
         try {
           const res = await axios.post('http://localhost:5000/api/applications', payload);
-          commit('addApplication', {
-            application: res.data
-          });
-          resolve(res.data);
+          setTimeout(() => {
+            commit('addApplication', {
+              application: res.data
+            });
+            resolve(res.data);
+          }, 1000);
         } catch (err) {
           reject(err)
         }
@@ -78,10 +82,12 @@ export default new Vuex.Store({
       return new Promise(async (resolve, reject) => {
         try {
           const res = await axios.delete(`http://localhost:5000/api/applications/${appId}`);
-          commit('deleteApplication', {
-            appId: appId
-          });
-          resolve(res.data);
+          setTimeout(() => {
+            commit('deleteApplication', {
+              appId: appId
+            });
+            resolve(res.data);
+          }, 1000);
         } catch (err) {
           reject(err)
         }
@@ -92,8 +98,10 @@ export default new Vuex.Store({
       return new Promise(async (resolve, reject) => {
         try {
           const res = await axios.delete('http://localhost:5000/api/applications/delete/delete-all');
-          commit('deleteAllApplications');
-          resolve(res.data);
+          setTimeout(() => {
+            commit('deleteAllApplications');
+            resolve(res.data);
+          }, 1000);
         } catch (err) {
           reject(err)
         }
@@ -106,11 +114,13 @@ export default new Vuex.Store({
           let reqPayload = {};
           reqPayload[payload.field] = payload.newValue;
           const res = await axios.put(`http://localhost:5000/api/applications/${payload.id}`, reqPayload);
-          commit('editApplication', {
-            appId: payload.id,
-            application: res.data
-          });
-          resolve(res.data);
+          setTimeout(() => {
+            commit('editApplication', {
+              appId: payload.id,
+              application: res.data
+            });
+            resolve(res.data);
+          }, 1000);
         } catch (err) {
           reject(err)
         }
@@ -123,11 +133,13 @@ export default new Vuex.Store({
       return new Promise(async (resolve, reject) => {
         try {
           const res = await axios.put(`http://localhost:5000/api/applications/${id}`, payload);
-          commit('editApplication', {
-            appId: id,
-            application: res.data
-          });
-          resolve(res.data);
+          setTimeout(() => {
+            commit('editApplication', {
+              appId: id,
+              application: res.data
+            });
+            resolve(res.data);
+          }, 1000);
         } catch (err) {
           reject(err)
         }
