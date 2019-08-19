@@ -3,11 +3,12 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const util = require('util');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const app = express();
 
 // connect to db
-mongoose.connect('mongodb://localhost:27017/applicationtracker', { useNewUrlParser: true })
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
   .catch(e => console.log());
 mongoose.set('useFindAndModify', false);
 var db = mongoose.connection;
