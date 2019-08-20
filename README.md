@@ -31,24 +31,24 @@ npm install      # or with yarn: yarn install
 
 3) Run the app (3 terminals):
 
-   * Start the Vue front end:
+ * Start the Vue front end:
 ```bash
 cd client
 npm run serve      # or with yarn: yarn serve
 ```
 
-   * MongoDB instance:
+ * MongoDB instance:
 ```bash
 mongod
 ```
 
-   * Node back end:
+ * Node back end:
 ```bash
 cd server
 npm run dev
 ```
 
-   * Visit at: http://localhost:8080/
+ * Visit at: http://localhost:8080/
 
 
 ## Contributing
