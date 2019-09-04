@@ -5,7 +5,7 @@ Application Companion is a tool to help keep track of your job applications duri
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
@@ -29,35 +29,39 @@ cd ../server
 npm install      # or with yarn: yarn install
 ```
 
-3) Run the app (3 terminals):
+3) Create a `.env` file in the root folder with the following:
+```
+DATABASE_URL='mongodb://localhost:27017/applicationtracker'
+PORT=5000
+BASE_URL='localhost:8080'
+```
 
-Start the Vue front end:
+
+4) Run the app (3 terminals):
+
+ * Start the Vue front end:
 ```bash
 cd client
 npm run serve      # or with yarn: yarn serve
 ```
 
-MongoDB instance:
+ * MongoDB instance:
 ```bash
 mongod
 ```
 
-Node back end:
+ * Node back end:
 ```bash
 cd server
 npm run dev
 ```
 
-Visit at:
-* http://localhost:8080/
+ * Visit at: http://localhost:8080/
 
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
