@@ -5,7 +5,7 @@ Application Companion is a tool to help keep track of your job applications duri
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
@@ -54,9 +54,6 @@ npm run dev
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
