@@ -11,17 +11,20 @@
     <top-nav />
     <div v-if="error" class="error-message">{{ error }}</div>
     <router-view />
+    <app-footer class="app-footer" />
   </div>
 </template>
 
 <script>
 import TopNav from '@/components/navigation/TopNav.vue';
+import Footer from '@/components/Footer.vue'
 import { mapActions } from 'vuex';
 
 export default {
 
   components: {
-    'top-nav': TopNav
+    'top-nav': TopNav,
+    'app-footer': Footer
   },
 
   data() {
@@ -34,7 +37,7 @@ export default {
   mounted() {
     this.loading = true;
     this.loadApplications()
-      .catch(err => { this.error = 'Failed to load applications' })
+      .catch(() => { this.error = 'Failed to load applications' })
       .finally(() => { this.loading = false; });
   },
 
@@ -131,6 +134,18 @@ body {
 
 .padded {
   padding: 2vh 4vw;
+}
+
+.app-footer {
+    position: fixed;
+    width: 100%;
+    height: 4vh;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0px -1px 5px 0px black;
+    padding-top: 2vh;
+    font-size: 12px;
+    color: #eeeeeeb2;
 }
 
 @media (max-width: 767px) {
