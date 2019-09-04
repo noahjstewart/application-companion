@@ -29,7 +29,15 @@ cd ../server
 npm install      # or with yarn: yarn install
 ```
 
-3) Run the app (3 terminals):
+3) Create a `.env` file in the root folder with the following:
+```
+DATABASE_URL='mongodb://localhost:27017/applicationtracker'
+PORT=5000
+BASE_URL='localhost:8080'
+```
+
+
+4) Run the app (3 terminals):
 
  * Start the Vue front end:
 ```bash
