@@ -67,7 +67,8 @@ export default {
     }),
 
     setApplicationRows() {
-      this.applicationRows = JSON.parse(JSON.stringify(this.applications));
+      let rows = JSON.parse(JSON.stringify(this.applications));
+      this.applicationRows = rows.sort((row1, row2) => (new Date(row1.applied_at) < new Date(row2.applied_at)) ? 1 : -1);
     },
 
     viewApplication(appId) {
