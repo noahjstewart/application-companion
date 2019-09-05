@@ -10,7 +10,7 @@
         <tr v-for="(row, index) in rows" :key="index" @click="rowClicked(row._id)">
           <td class="delete" @click="deleteApplication(row._id, $event)"><i class="fa fa-trash-o" aria-hidden="true"></i></td>
           <td>{{ row.company }}</td>
-          <td>{{ row.position }}</td>
+          <td class="position-cell">{{ row.position }}</td>
           <td><span v-if="row.listing_url" @click="visitListing(row.listing_url, $event)" class="listing-url">Listing</span></td>
           <td>{{ row.applied_at | formatDate }}</td>
           <td class="notes-cell">{{ row.notes }}</td>
@@ -144,8 +144,15 @@ td {
   color: #00adb5;
 }
 
+.position-cell {
+  max-width: 175px;
+}
+
 .notes-cell {
   max-width: 150px;
+}
+
+.position-cell, .notes-cell {
   overflow: hidden;
   text-overflow: ellipsis;
 }
