@@ -2,6 +2,8 @@
 
 Application Companion is a tool to help keep track of your job applications during your job hunt.
 
+_NOTE:_ This README will get you a version of the app up and running on your local machine. Visit https://application-companion.netlify.com to see the live version, signup, and start tracking applications!
+
 
 ## Getting Started
 
